@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { barrio } from "./fonts";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -18,8 +19,8 @@ export default function Home() {
     <div className={styles.memoryBg}>
       <div className={styles.menuContainer}>
         <header className={styles.headerSection}>
-          <h1 className={styles.title}>Memory Mania</h1>
-          <p className={styles.subtitle}>Designed by: John Doe and Jane Doe</p>
+          <h1 className={`${styles.title} ${barrio.className}`}>Memory Mania</h1>
+          <p className={styles.subtitle}>Designed by: Felix Allard and Aydin Yalcinkaya</p>
         </header>
 
         <section className={styles.section}>
@@ -57,21 +58,21 @@ export default function Home() {
               onClick={() => setTheme("flags")}
               type="button"
             >
-              Flags
+              <span role="img" aria-label="Canadian flag">🇨🇦</span> Flags
             </button>
             <button
               className={`${styles.menuBtn} ${theme === "buildings" ? styles.selected : ""}`}
               onClick={() => setTheme("buildings")}
               type="button"
             >
-              Buildings
+              <span role="img" aria-label="Hospital">🏥</span> Buildings
             </button>
             <button
               className={`${styles.menuBtn} ${theme === "faces" ? styles.selected : ""}`}
               onClick={() => setTheme("faces")}
               type="button"
             >
-              Faces
+              <span role="img" aria-label="Smiling face">😊</span> Faces
             </button>
           </div>
         </section>
