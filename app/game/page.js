@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { barrio } from "../fonts";
 import styles from "./game.module.css";
 
@@ -42,11 +42,11 @@ function shuffle(array) {
   return arr;
 }
 
-export default function Game() {
+export default function Game({ searchParams }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const theme = searchParams.get("theme") || "flags";
-  const difficulty = searchParams.get("difficulty") || "easy";
+  // Unwrap searchParams with useMemo for React compliance
+  const theme = useMemo(() => searchParams?.get?.("theme") || "flags", [searchParams]);
+  const difficulty = useMemo(() => searchParams?.get?.("difficulty") || "easy", [searchParams]);
   const gridSize = DIFFICULTY_GRID[difficulty];
   const numPairs = (gridSize * gridSize) / 2;
   const [cards, setCards] = useState([]);
