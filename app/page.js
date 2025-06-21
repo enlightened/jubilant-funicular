@@ -4,15 +4,16 @@ import { useState } from "react";
 import Image from "next/image";
 import { barrio } from "./fonts";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [difficulty, setDifficulty] = useState("easy");
   const [theme, setTheme] = useState("flags");
+  const router = useRouter();
 
-  // Placeholder for navigation logic
   const handleStart = () => {
-    // TODO: Navigate to game page with selected options
-    alert(`Start game: ${difficulty}, ${theme}`);
+    // Navigate to game page with selected options
+    router.push(`/game?theme=${theme}&difficulty=${difficulty}`);
   };
 
   return (
