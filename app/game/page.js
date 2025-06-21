@@ -11,9 +11,9 @@ const EMOJIS = {
     "🇨🇦", "🇹🇷", "🇺🇸", "🇫🇷", "🇩🇪", "🇯🇵", "🇧🇷", "🇬🇧", "🇮🇹", "🇪🇸", "🇦🇺", "🇲🇽", "🇨🇳", "🇮🇳", "🇰🇷", "🇸🇪",
     "🇳🇱", "🇷🇺", "🇿🇦", "🇦🇷", "🇸🇦", "🇳🇬", "🇵🇱", "🇨🇭", "🇳🇴", "🇩🇰", "🇵🇹", "🇬🇷", "🇹🇭", "🇪🇬", "🇨🇱", "🇻🇳"
   ],
-  buildings: [
-    "🏥", "🏫", "🏦", "🏨", "🏩", "🏛️", "🏢", "🏬", "🏠", "🏡", "🏚️", "🏗️", "🏭", "🏰", "🏯", "🗼",
-    "🗽", "⛩️", "🕌", "⛪", "🕍", "🛕", "🕋", "⛲", "🛤️", "🛣️", "🏤", "🏪", "🏚️", "🏠", "🏡", "🏢"
+  food: [
+    "🍕", "🍔", "🍟", "🌭", "🍿", "🥓", "🥚", "🍳", "🧀", "🥞", "🥨", "🥯", "🥐", "🍞", "🥖", "🥗",
+    "🍝", "🍜", "🍲", "🍛", "🍣", "🍤", "🍙", "🍚", "🍘", "🍥", "🥮", "🍢", "🍡", "🍧", "🍨", "🍦", "🥧"
   ],
   faces: [
     "😊", "😂", "😍", "😎", "😡", "😭", "😱", "😴", "😇", "😈", "😜", "🤓", "🥳", "😏", "😬", "😅",
@@ -25,6 +25,12 @@ const DIFFICULTY_GRID = {
   easy: 4,
   medium: 6,
   hard: 8
+};
+
+const THEME_LABELS = {
+  flags: "Flags",
+  food: "Food",
+  faces: "Faces"
 };
 
 function shuffle(array) {
@@ -133,7 +139,7 @@ export default function Game() {
           <div className={styles.infoGrid}>
             <div><strong>Duration:</strong> {formatTime(timer)}</div>
             <div><strong>Difficulty:</strong> {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</div>
-            <div><strong>Theme:</strong> {theme.charAt(0).toUpperCase() + theme.slice(1)}</div>
+            <div><strong>Theme:</strong> {THEME_LABELS[theme]}</div>
             <div><strong>Pairs Found:</strong> {pairsFound}</div>
           </div>
         </div>
@@ -158,9 +164,7 @@ export default function Game() {
               role="button"
               aria-label={card.flipped || card.matched ? card.emoji : "Hidden card"}
             >
-              {card.flipped || card.matched ? (
-                <span className={styles.emoji}>{card.emoji}</span>
-              ) : null}
+              <span className={styles.emoji} style={{opacity: card.flipped || card.matched ? 1 : 0}}>{card.emoji}</span>
             </div>
           ))}
         </div>

@@ -62,11 +62,11 @@ export default function Home() {
               <span role="img" aria-label="Canadian flag">🇨🇦</span> Flags
             </button>
             <button
-              className={`${styles.menuBtn} ${theme === "buildings" ? styles.selected : ""}`}
-              onClick={() => setTheme("buildings")}
+              className={`${styles.menuBtn} ${theme === "food" ? styles.selected : ""}`}
+              onClick={() => setTheme("food")}
               type="button"
             >
-              <span role="img" aria-label="Hospital">🏥</span> Buildings
+              <span role="img" aria-label="Pizza">🍕</span> Food
             </button>
             <button
               className={`${styles.menuBtn} ${theme === "faces" ? styles.selected : ""}`}
