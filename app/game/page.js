@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { barrio } from "../fonts";
 import styles from "./game.module.css";
@@ -55,6 +55,7 @@ export default function Game() {
   const [pairsFound, setPairsFound] = useState(0);
   const [timer, setTimer] = useState(0);
   const [running, setRunning] = useState(true);
+  const [showVictory, setShowVictory] = useState(false);
   const timerRef = useRef();
 
   // Initialize cards
@@ -118,7 +119,10 @@ export default function Game() {
 
   // Stop timer if all pairs found
   useEffect(() => {
-    if (pairsFound === numPairs) setRunning(false);
+    if (pairsFound === numPairs) {
+      setRunning(false);
+      setTimeout(() => setShowVictory(true), 900);
+    }
   }, [pairsFound, numPairs]);
 
   // Format timer
@@ -168,6 +172,38 @@ export default function Game() {
             </div>
           ))}
         </div>
+        {showVictory && (
+          <div className={styles.victoryOverlay}>
+            <div className={styles.victoryBox}>
+              <h2 className={styles.victoryTitle}>🎉 Victory!</h2>
+              <div className={styles.victoryStats}>
+                <div><strong>Duration:</strong> {formatTime(timer)}</div>
+                <div><strong>Difficulty:</strong> {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</div>
+                <div><strong>Theme:</strong> {THEME_LABELS[theme]}</div>
+                <div><strong>Pairs Found:</strong> {pairsFound}</div>
+              </div>
+              <div className={styles.victoryBtns}>
+                <button className={styles.restartBtn} onClick={() => {
+                  setShowVictory(false);
+                  let emojiSet = EMOJIS[theme].slice(0, numPairs);
+                  let deck = shuffle([...emojiSet, ...emojiSet]).map((emoji, i) => ({
+                    id: i,
+                    emoji,
+                    flipped: false,
+                    matched: false
+                  }));
+                  setCards(deck);
+                  setFlipped([]);
+                  setMatched([]);
+                  setPairsFound(0);
+                  setTimer(0);
+                  setRunning(true);
+                }}>Restart</button>
+                <button className={styles.menuBtn} onClick={() => router.push("/")}>Menu</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

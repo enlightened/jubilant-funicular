@@ -149,6 +149,83 @@
   display: block;
 }
 
+.victoryOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 40, 60, 0.45);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInVictory 0.6s;
+}
+@keyframes fadeInVictory {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.victoryBox {
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 8px 40px 0 rgba(30,64,175,0.13);
+  padding: 40px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.victoryTitle {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1e40af;
+  margin-bottom: 18px;
+}
+.victoryStats {
+  font-size: 1.15rem;
+  color: #1e293b;
+  margin-bottom: 24px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.victoryBtns {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+.restartBtn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 12px 36px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px 0 rgba(34,197,94,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.restartBtn:hover {
+  background: #16a34a;
+}
+.menuBtn {
+  background: #1e40af;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  padding: 12px 36px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 12px 0 rgba(30,64,175,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.menuBtn:hover {
+  background: #2563eb;
+}
+
 @media (max-width: 600px) {
   .gameContainer {
     padding: 16px 2px 12px 2px;
